@@ -1,13 +1,18 @@
-import { Fragment } from 'react'
-import { useState, useEffect } from 'react'
+import React, { Fragment,  useState, useEffect  } from 'react';
+import { Route, Routes } from "react-router-dom";
+import AllCards from './components/AllCards';
+import Home from './components/Home'
 import './App.css';
 
-function App() {
+let apiUrl = "https://mlb-card-collection-api.onrender.com";
+
+export default function App() {
+
   return (
-    <Fragment>
-      <h1>Hello World</h1>
-    </Fragment>
-  );
+    <Routes>
+      <Route path="/" element={<Home />}/>
+      <Route path="/allCards" element={<AllCards />}/>
+    </Routes>
+  )
 }
 
-export default App;
