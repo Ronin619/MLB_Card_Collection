@@ -5,8 +5,6 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
-import AddCard from './AddCard';
-import DeleteCard from './DeleteCard';
 
 let apiUrl = "https://mlb-card-collection-api.onrender.com";
 
