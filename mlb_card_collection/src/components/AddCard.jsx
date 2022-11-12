@@ -4,8 +4,6 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import CardInput from './CardInput';
 
-let apiUrl = "https://mlb-card-collection-api.onrender.com";
-
 export default function AddCard() {
 
     return <>
@@ -14,8 +12,6 @@ export default function AddCard() {
         <Nav className="me-auto">
           <Nav.Link href="/">Home</Nav.Link>
           <Nav.Link href="/allCards">All Cards</Nav.Link>
-          <Nav.Link href="/deleteCard">Delete Card</Nav.Link>
-          <Nav.Link href="/editCard">Edit Card</Nav.Link>
         </Nav>
       </Container>
     </Navbar>

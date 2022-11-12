@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Route, Routes } from "react-router-dom";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
+import Axios from 'axios';
 
 let apiUrl = "https://mlb-card-collection-api.onrender.com";
 
@@ -16,12 +16,15 @@ export default function AllCards () {
         loadCards();
         }, []);
 
+        const deleteBatter = (lastName) => {
+          
+        }
+
     const loadCards = async () => {
       await fetch(`${apiUrl}/batters`)
       .then(res => res.json())
       .then(resData => setDisplay(resData))
     }
-  console.log(display);
 
     return  <>
     <Navbar bg="primary" variant="dark">
@@ -29,14 +32,12 @@ export default function AllCards () {
         <Nav className="me-auto">
           <Nav.Link href="/">Home</Nav.Link>
           <Nav.Link href="/addCard">Add Card</Nav.Link>
-          <Nav.Link href="/deleteCard">Delete Card</Nav.Link>
-          <Nav.Link href="/editCard">Edit Card</Nav.Link>
         </Nav>
       </Container>
     </Navbar>
     <div>
       {display.map(batter => (
-        <Card style={{ width: '18rem', marginTop: '20px', margin: '20px auto'  }}>
+        <Card key={batter.batter_id} style={{ width: '18rem', marginTop: '20px', margin: '20px auto'  }}>
       <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
       <Card.Body>
         <Card.Title>{batter.first_name} {batter.last_name}</Card.Title>
@@ -48,7 +49,8 @@ export default function AllCards () {
         <ListGroup.Item>OPS: {batter.OPS}</ListGroup.Item>
       </ListGroup>
       <Card.Body>
-        <Card.Link href="#">Turn Card</Card.Link>
+        <button className="btn btn-danger me-4" onClick={() => deleteBatter()}>Delete Card</button>
+        <button className="btn btn-warning ms-4">Edit Card</button>
       </Card.Body>
     </Card>
      ))}
