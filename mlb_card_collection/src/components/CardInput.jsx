@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import Axios from 'axios';
+import { Navigate } from "react-router-dom";
 import '../App.css'
 
 let apiUrl = "https://mlb-card-collection-api.onrender.com";
@@ -35,9 +36,7 @@ export default function CardInput () {
             OPS: parseInt(formData.OPS),
             image: formData.image
         })
-        .then(res => {
-            console.log(res.data)
-        })
+        .then(<Navigate to="/"/>)
     }
 
     return <>
