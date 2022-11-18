@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -11,6 +11,12 @@ let apiUrl = "https://mlb-card-collection-api.onrender.com";
 
 export default function AllCards () {
 
+  const navigate = useNavigate();
+
+  const navigateToEditInput = () => {
+    navigate('/editInput');
+  }
+
     const [display, setDisplay] = useState([])
 
     const loadCards = async () => {
@@ -18,6 +24,7 @@ export default function AllCards () {
       .then(res => res.json())
       .then(resData => setDisplay(resData))
     }
+    console.log(display);
 
      useEffect(() => {
         loadCards();
@@ -28,7 +35,6 @@ export default function AllCards () {
          Axios.delete(`${apiUrl}/api/batters/${id}`)
           .then(res => console.log("Deleted!", res))
           .catch(err => console.log(err));
-          <Navigate to="/"/>
         }
         
 
@@ -44,7 +50,7 @@ export default function AllCards () {
     <div>
       {display.map(batter => (
         <Card key={batter.id} style={{ width: '18rem', marginTop: '20px', margin: '20px auto'  }}>
-      <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
+      <Card.Img variant="top" src={batter.images}/>
       <Card.Body>
         <Card.Title>{batter.first_name} {batter.last_name}</Card.Title>
       </Card.Body>
@@ -57,7 +63,7 @@ export default function AllCards () {
       </ListGroup>
       <Card.Body>
         <button className="btn btn-danger me-4" onClick={e => deleteBatter(batter.id, e)}>Delete Card</button>
-        <button className="btn btn-warning ms-4">Edit Card</button>
+        <button className="btn btn-warning ms-4" onClick={navigateToEditInput}>Edit Card</button>
       </Card.Body>
     </Card>
      ))}
