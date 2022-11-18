@@ -9,9 +9,9 @@ import './App.css';
 export default function App() {
   return <>
     <Routes>
-      <Route path="/" element={<Home />}/>
-      <Route path="/allCards" element={<AllCards />}/>
-      <Route path="/addCard" element={<AddCard />}/>
+      <Route exact path="/" element={<Home />}/>
+      <Route exact path="/allCards" element={<AllCards />}/>
+      <Route exact path="/addCard" element={<AddCard />}/>
     </Routes>
   </>
 }
